@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up / Log In</title>
+    <style>
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('loginForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting
+
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+                var errorElement = document.getElementById('error');
+
+                var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                var errorMessage = '';
+
+                if (!emailPattern.test(email)) {
+                    errorMessage += 'Please enter a valid email address.<br>';
+                }
+
+                if (password.length < 8) {
+                    errorMessage += 'Password must be at least 8 characters long.<br>';
+                }
+
+                if (errorMessage) {
+                    errorElement.innerHTML = errorMessage;
+                } else {
+                    errorElement.innerHTML = '';
+                    alert('Form submitted successfully!');
+                    // Here you can proceed with form submission or further processing
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Sign Up / Log In</h2>
+    <form id="loginForm">
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email"><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="error" class="error"></div>
+</body>
+</html>
